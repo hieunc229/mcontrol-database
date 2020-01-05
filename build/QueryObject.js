@@ -159,6 +159,10 @@ var QueryObject = /** @class */ (function () {
         this.__opts.limit = number;
         return this;
     };
+    QueryObject.prototype.reverse = function (isReverse) {
+        this.__opts.reverse = isReverse === undefined ? true : isReverse;
+        return this;
+    };
     return QueryObject;
 }());
 exports.QueryObject = QueryObject;

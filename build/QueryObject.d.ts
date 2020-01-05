@@ -11,6 +11,7 @@ export declare class QueryObject {
         end?: string | number;
         arrayContains?: string | number;
         limit?: number;
+        reverse?: boolean;
     };
     __eq?: {
         gte?: string;
@@ -31,6 +32,7 @@ export declare class QueryObject {
     eq(value: string | number | boolean): QueryObject;
     arrayContains(value: string | number): QueryObject;
     limit(number: number): QueryObject;
+    reverse(isReverse?: boolean): QueryObject;
     get: (_opts?: {
         values: boolean;
     } | undefined) => Promise<FetchResult>;

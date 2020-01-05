@@ -14,7 +14,8 @@ export class QueryObject {
         start?: string | number,
         end?: string | number,
         arrayContains?: string | number,
-        limit?: number
+        limit?: number,
+        reverse?: boolean
     } = {};
     __eq?: {
         gte?: string,
@@ -108,6 +109,11 @@ export class QueryObject {
 
     limit(number: number): QueryObject {
         this.__opts.limit = number;
+        return this;
+    }
+
+    reverse(isReverse?: boolean): QueryObject {
+        this.__opts.reverse = isReverse === undefined ? true : isReverse;
         return this;
     }
 
