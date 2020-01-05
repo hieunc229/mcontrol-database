@@ -178,6 +178,8 @@ export default class Collection {
 
             opts.inserts && opts.inserts.forEach(doc => {
                 let { id, ...rest } = doc;
+                !id && (id = shortid.generate());
+
                 batch.put(id, JSON.stringify(rest));
                 batchIndexes.put(id, rest);
             });

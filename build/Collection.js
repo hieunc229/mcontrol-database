@@ -302,6 +302,7 @@ var Collection = /** @class */ (function () {
             var batchIndexes = _this._indexManager.batch();
             opts.inserts && opts.inserts.forEach(function (doc) {
                 var id = doc.id, rest = __rest(doc, ["id"]);
+                !id && (id = shortid_1.default.generate());
                 batch.put(id, JSON.stringify(rest));
                 batchIndexes.put(id, rest);
             });
