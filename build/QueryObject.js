@@ -174,9 +174,7 @@ function getStream(opts, store) {
         store.createReadStream(opts)
             .on('data', function (data) {
             key = (data.key ? data.key : data).toString('utf8');
-            if (separator === false) {
-                separator = key.lastIndexOf(':') + 1;
-            }
+            separator = key.lastIndexOf(':') + 1;
             if (data.key && data.value) {
                 docs.push(__assign({ id: key.substr(separator) }, JSON.parse(data.value.toString('utf8'))));
             }
