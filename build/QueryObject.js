@@ -168,14 +168,14 @@ var QueryObject = /** @class */ (function () {
 exports.QueryObject = QueryObject;
 function getStream(opts, store) {
     return new Promise(function (resolve, reject) {
-        var separator = false, key;
+        var key;
         var docs = [];
         var errors = [], keys = [];
         store.createReadStream(opts)
             .on('data', function (data) {
             key = (data.key ? data.key : data).toString('utf8');
-            separator = key.lastIndexOf(':') + 1;
-            if (data.key && data.value) {
+            var separator = key.lastIndexOf(':') + 1;
+            if (opts.values) {
                 docs.push(__assign({ id: key.substr(separator) }, JSON.parse(data.value.toString('utf8'))));
             }
             else {

@@ -160,16 +160,16 @@ export class QueryObject {
 function getStream(opts: any, store: LevelUp)
     : Promise<{ docs: { id: string, [prop: string]: any }[], errors: any[], keys: string[] }> {
     return new Promise((resolve, reject) => {
-        let separator = false, key;
+        let key: string;
         let docs: { id: string, [prop: string]: any }[] = [];
         let errors: any[] = [], keys: string[] = []
 
         store.createReadStream(opts)
             .on('data', function (data: any) {
                 key = (data.key ? data.key : data).toString('utf8');
-                separator = key.lastIndexOf(':') + 1;
+                const separator = key.lastIndexOf(':') + 1;
                 
-                if (data.key && data.value) {
+                if (opts.values) {
                     docs.push({
                         id: key.substr(separator),
                         ...JSON.parse(data.value.toString('utf8'))
