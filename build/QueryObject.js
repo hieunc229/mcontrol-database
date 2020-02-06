@@ -73,22 +73,22 @@ var QueryObject = /** @class */ (function () {
                                 errors: []
                             };
                             opts = Object.assign(this.__opts, _opts);
-                            if (!Object.keys(opts).length) return [3 /*break*/, 4];
-                            return [4 /*yield*/, getStream(opts, this.__store)];
-                        case 3:
-                            request = _b.sent();
-                            results.keys = request.keys;
-                            results.docs = request.docs;
-                            results.errors = request.errors;
-                            _b.label = 4;
-                        case 4:
-                            if (!this.__eq) return [3 /*break*/, 6];
+                            if (!this.__eq) return [3 /*break*/, 4];
                             return [4 /*yield*/, getStream(Object.assign({ values: false }, this.__eq, _opts), this.__store)];
-                        case 5:
+                        case 3:
                             request = _b.sent();
                             results.docs = results.docs.concat(request.docs);
                             results.errors = results.errors.concat(request.errors);
                             results.keys = results.keys.concat(request.keys);
+                            return [3 /*break*/, 6];
+                        case 4:
+                            if (!Object.keys(opts).length) return [3 /*break*/, 6];
+                            return [4 /*yield*/, getStream(opts, this.__store)];
+                        case 5:
+                            request = _b.sent();
+                            results.keys = request.keys;
+                            results.docs = request.docs;
+                            results.errors = request.errors;
                             _b.label = 6;
                         case 6:
                             results.keys = results.keys.filter(function (k, i, list) { return list.indexOf(k) === i; });

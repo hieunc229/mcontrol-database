@@ -130,19 +130,24 @@ export class QueryObject {
             }
             let request: any;
             let opts = Object.assign(this.__opts, _opts);
-
-            if (Object.keys(opts).length) {
-                request = await getStream(opts, this.__store);
-                results.keys = request.keys;
-                results.docs = request.docs;
-                results.errors = request.errors;
-            }
+            
+            // if (Object.keys(opts).length) {
+            //     request = await getStream(opts, this.__store);
+            //     results.keys = request.keys;
+            //     results.docs = request.docs;
+            //     results.errors = request.errors;
+            // }
 
             if (this.__eq) {
                 request = await getStream(Object.assign({ values: false }, this.__eq, _opts), this.__store);
                 results.docs = results.docs.concat(request.docs);
                 results.errors = results.errors.concat(request.errors);
                 results.keys = results.keys.concat(request.keys);
+            } else if (Object.keys(opts).length) {
+                request = await getStream(opts, this.__store);
+                results.keys = request.keys;
+                results.docs = request.docs;
+                results.errors = request.errors;
             }
 
             results.keys = results.keys.filter((k, i, list) => list.indexOf(k) === i);
