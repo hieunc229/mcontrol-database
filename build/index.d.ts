@@ -1,3 +1,4 @@
+import "./init";
 import DatabaseManager from "./DatabaseManager";
 import Auth from "./Auth";
 export default DatabaseManager;

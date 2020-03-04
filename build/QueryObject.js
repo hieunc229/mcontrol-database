@@ -175,6 +175,7 @@ function getStream(opts, store) {
             .on('data', function (data) {
             key = (data.key ? data.key : data).toString('utf8');
             var separator = key.lastIndexOf(':') + 1;
+            console.log(key, separator, key.substr(separator));
             if (opts.values) {
                 docs.push(__assign({ id: key.substr(separator) }, JSON.parse(data.value.toString('utf8'))));
             }

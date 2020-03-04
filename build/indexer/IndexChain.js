@@ -23,6 +23,7 @@ var IndexChain = /** @class */ (function () {
                     _this._batch.del((value ? '1' : '0') + ":" + id);
                     break;
                 case "string":
+                    // this._batch.del(`${value}:${id}`);
                     _this._batch.del(value.toLowerCase() + ":" + id);
                     break;
                 case "number":
@@ -43,6 +44,7 @@ var IndexChain = /** @class */ (function () {
                 opts.batch.put("" + opts.parentProp + (value ? '1' : '0') + ":" + id, true);
                 break;
             case "string":
+                // opts.batch.put(`${opts.parentProp}${value}:${id}`, true);
                 opts.batch.put("" + opts.parentProp + value.toLowerCase() + ":" + id, true);
                 break;
             case "number":

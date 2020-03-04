@@ -169,6 +169,7 @@ function getStream(opts: any, store: LevelUp)
                 key = (data.key ? data.key : data).toString('utf8');
                 const separator = key.lastIndexOf(':') + 1;
                 
+                console.log(key, separator, key.substr(separator));
                 if (opts.values) {
                     docs.push({
                         id: key.substr(separator),

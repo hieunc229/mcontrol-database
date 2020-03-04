@@ -101,6 +101,7 @@ export default class Collection {
 
     insert(object: { [prop: string]: any }): Promise<string> {
         let _ = this;
+        
         return new Promise(async (resolve, reject) => {
             let { id, ...value } = object;
             if (!id) id = shortid.generate();
